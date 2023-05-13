@@ -1,0 +1,51 @@
+ion-content::part(background) {
+    background: hsla(217, 100%, 50%, 1);
+
+    background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+  }
+
+
+.dates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #edf1fc;
+    width: 5rem;
+    height: 5rem; 
+    border-radius: 50%;
+}
+
+.dates .day{
+    color: #4e73e5;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.dates .month{
+    color: #4e73e5;
+    line-height: 1;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.price{
+    color: #0e599c;
+    text-align: end;
+    vertical-align:bottom;
+    font-weight: bolder;
+  }
+
+#cards{
+    margin: 0px;
+}
+
+.body{
+    margin-top: 90px;
+    border-radius: 5px;
+    background-color: #fff;
+}

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contato</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title id='title'>Enviar Mensagem</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form expand="block" (ngSubmit)="send()">
+
+        <input type="tel"  class="my-custom-input" [(ngModel)]="numb" name="numb" mask="(00)  0000-0000||(00) 00000-0000" />
+        <ion-button class="" id="button" disabled={{buttonDisabled}} color="success" expand="block" type="submit">Enviar</ion-button>
+        <ion-button id="button" class="" (click)="limpar()" disabled={{buttonDisabled}} color="danger" expand="block" >Limpar</ion-button>
+        <ion-button id="button" class="" disabled={{buttonDisabled}} expand="block" [routerLink]="['/tabs/tab2']" >Voltar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+</ion-content>

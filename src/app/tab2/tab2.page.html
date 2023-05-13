@@ -1,0 +1,231 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Festas
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+
+  <div class="body">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card color="success" id="cards">
+            <ion-card-header>
+              <ion-card-title><span>
+                  <ion-icon slot="start" size="default" name="checkmark-circle"></ion-icon></span>Confirmados</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              Card Content
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card id="cards">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              Card Content
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card id="cards">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              Card Content
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card color="danger" id="cards">
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              Card Content
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
+
+    <ion-accordion-group #accordionGroup>
+      <ion-card>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-card-header>
+              <div *ngIf="pending.length == 0">
+
+                <ion-card-title><span>
+                    <ion-icon slot="start" size="default" color="success" name="checkmark-circle"></ion-icon></span>Pendentes de confirmação</ion-card-title>
+              </div>
+
+              <div *ngIf="pending.length >= 1">
+
+                <ion-card-title><span>
+                    <ion-icon slot="start" size="default" color="warning" name="alert-circle-outline"></ion-icon></span>Pendentes de confirmação</ion-card-title>
+              </div>
+            </ion-card-header>
+          </ion-item>
+          <div style="text-align: center;" class="" slot="content">
+            <div *ngIf="pending.length == 0" class="">
+              <ion-text color="dark">
+                <h1><span>
+                    <ion-icon slot="start" size="default" color="success" name="checkmark-circle"></ion-icon></span>Nenhuma Pendência</h1>
+              </ion-text>
+
+            </div>
+            <div *ngIf="pending.length >= 1">
+              <div *ngFor="let v of pending;">
+                <ion-accordion-group #accordionGroup>
+
+                  <ion-card>
+                    <ion-accordion value="first">
+                      <ion-item slot="header" color="light">
+                        <ion-row>
+                          <ion-col size="auto">
+                            <div class="dates">
+                              <span class="day">{{ v.date }}</span>
+                              <span class="month">{{ v.month }}</span>
+                            </div>
+                          </ion-col>
+                          <ion-col>
+                            <ion-card-header>
+                              <ion-card-title>{{v.name}}</ion-card-title>
+                              <ion-card-subtitle>{{v.type_name}} - {{v.city}}</ion-card-subtitle>
+                            </ion-card-header>
+                          </ion-col>
+                        </ion-row>
+                      </ion-item>
+                      <div class="" slot="content">
+                        <ion-card-content>
+                          <p>Horário da Festa: {{v.hour_init}} até {{v.hour_end}}</p>
+                          <p class="widget-49-meeting-item">Número de Convidados: {{ v.guests }} pessoas</p>
+                          <p class="widget-49-meeting-item">Descrição: {{ v.description }}</p>
+                          <p class="widget-49-meeting-item">Valor cobrado: <span>{{v.price}}</span></p>
+
+                          <ion-button (click)="denied(v.event_id);" color="danger">Negar</ion-button>
+                          <ion-button (click)="permited(v.event_id);" color="primary">Confirmar</ion-button>
+                          <ion-button href='http://wa.me/{{v.phone}}' color="success"><ion-icon slot="start" name="logo-whatsapp"></ion-icon>Chat</ion-button>
+
+
+                        </ion-card-content>
+                      </div>
+                    </ion-accordion>
+                  </ion-card>
+                </ion-accordion-group>
+              </div>
+            </div>
+          </div>
+        </ion-accordion>
+      </ion-card>
+    </ion-accordion-group>
+
+    <ion-accordion-group #accordionGroup>
+      <ion-card>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-card-header>
+              <div *ngIf="confirmated.length == 0">
+                <ion-card-title><span>
+                    <ion-icon slot="start" size="default" color="warning" name="alert-circle-outline"></ion-icon></span>Próximas Festas</ion-card-title>
+              </div>
+
+              <div *ngIf="confirmated.length >= 1">
+
+                <ion-card-title>Próximas Festas</ion-card-title>
+              </div>
+            </ion-card-header>
+          </ion-item>
+          <div style="text-align: center;" class="" slot="content">
+            <div *ngIf="confirmated.length == 0" class="">
+              <ion-text color="dark">
+                <h1><span>
+                    <ion-icon slot="start" size="default" color="warning" name="alert-circle-outline"></ion-icon></span>Nenhuma Festa Cadastrada</h1>
+              </ion-text>
+
+            </div>
+            <div *ngIf="confirmated.length >= 1">
+              <div *ngFor="let v of confirmated;">
+                <ion-accordion-group #accordionGroup>
+
+                  <ion-card>
+                    <ion-accordion value="first">
+                      <ion-item slot="header" color="light">
+                        <ion-row>
+                          <ion-col size="auto">
+                            <div class="dates">
+                              <span class="day">{{ v.date }}</span>
+                              <span class="month">{{ v.month }}</span>
+                            </div>
+                          </ion-col>
+                          <ion-col>
+                            <ion-card-header>
+                              <ion-card-title>{{v.name}}</ion-card-title>
+                              <ion-card-subtitle>{{v.type_name}} - {{v.city}}</ion-card-subtitle>
+                            </ion-card-header>
+                          </ion-col>
+                        </ion-row>
+                      </ion-item>
+                      <div class="" slot="content">
+                        <ion-card-content>
+                          <p>Horário da Festa: {{v.hour_init}} até {{v.hour_end}}</p>
+                          <p class="widget-49-meeting-item">Número de Convidados: {{ v.guests }} pessoas</p>
+                          <p class="widget-49-meeting-item">Descrição: {{ v.description }}</p>
+                          <p class="widget-49-meeting-item">Valor cobrado: <span>{{v.price}}</span></p>
+                          <ion-button href='http://wa.me/{{v.phone}}' color="success"><ion-icon slot="start" name="logo-whatsapp"></ion-icon>Chat</ion-button>
+
+
+                        </ion-card-content>
+                      </div>
+                    </ion-accordion>
+                  </ion-card>
+                </ion-accordion-group>
+              </div>
+            </div>
+          </div>
+        </ion-accordion>
+      </ion-card>
+    </ion-accordion-group>
+
+
+    
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+      <ion-fab-button color="success" [routerLink]="['/', 'contact']">
+
+        <ion-icon name="logo-whatsapp"></ion-icon>
+
+      </ion-fab-button>
+
+    </ion-fab>
+</ion-content>

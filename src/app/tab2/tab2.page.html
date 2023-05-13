@@ -1,12 +1,3 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Festas
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
@@ -19,26 +10,18 @@
           <ion-card color="success" id="cards">
             <ion-card-header>
               <ion-card-title><span>
-                  <ion-icon slot="start" size="default" name="checkmark-circle"></ion-icon></span>Confirmados</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                  <ion-icon slot="start" size="default" name="checkmark-circle"></ion-icon></span>Realizadas</ion-card-title>
+              <ion-card-subtitle>Festas realizadas</ion-card-subtitle>
             </ion-card-header>
-
-            <ion-card-content>
-              Card Content
-            </ion-card-content>
           </ion-card>
         </ion-col>
 
         <ion-col>
           <ion-card id="cards">
             <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+              <ion-card-title>Próximas</ion-card-title>
+              <ion-card-subtitle>Próxima festa: (day)</ion-card-subtitle>
             </ion-card-header>
-
-            <ion-card-content>
-              Card Content
-            </ion-card-content>
           </ion-card>
         </ion-col>
 
@@ -48,26 +31,18 @@
         <ion-col>
           <ion-card id="cards">
             <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+              <ion-card-title>Pendentes</ion-card-title>
+              <ion-card-subtitle>Há festas pendentes</ion-card-subtitle>
             </ion-card-header>
-
-            <ion-card-content>
-              Card Content
-            </ion-card-content>
           </ion-card>
         </ion-col>
 
         <ion-col>
           <ion-card color="danger" id="cards">
             <ion-card-header>
-              <ion-card-title>Card Title</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+              <ion-card-title>Canceladas</ion-card-title>
+              <ion-card-subtitle>NUMBER</ion-card-subtitle>
             </ion-card-header>
-
-            <ion-card-content>
-              Card Content
-            </ion-card-content>
           </ion-card>
         </ion-col>
 
@@ -75,33 +50,8 @@
     </ion-grid>
 
 
-
-    <ion-accordion-group #accordionGroup>
-      <ion-card>
-        <ion-accordion value="first">
-          <ion-item slot="header" color="light">
-            <ion-card-header>
-              <div *ngIf="pending.length == 0">
-
-                <ion-card-title><span>
-                    <ion-icon slot="start" size="default" color="success" name="checkmark-circle"></ion-icon></span>Pendentes de confirmação</ion-card-title>
-              </div>
-
-              <div *ngIf="pending.length >= 1">
-
-                <ion-card-title><span>
-                    <ion-icon slot="start" size="default" color="warning" name="alert-circle-outline"></ion-icon></span>Pendentes de confirmação</ion-card-title>
-              </div>
-            </ion-card-header>
-          </ion-item>
+    <div *ngIf="pending.length != 0">
           <div style="text-align: center;" class="" slot="content">
-            <div *ngIf="pending.length == 0" class="">
-              <ion-text color="dark">
-                <h1><span>
-                    <ion-icon slot="start" size="default" color="success" name="checkmark-circle"></ion-icon></span>Nenhuma Pendência</h1>
-              </ion-text>
-
-            </div>
             <div *ngIf="pending.length >= 1">
               <div *ngFor="let v of pending;">
                 <ion-accordion-group #accordionGroup>
@@ -144,10 +94,9 @@
               </div>
             </div>
           </div>
-        </ion-accordion>
-      </ion-card>
-    </ion-accordion-group>
+      
 
+    </div>
     <ion-accordion-group #accordionGroup>
       <ion-card>
         <ion-accordion value="first">

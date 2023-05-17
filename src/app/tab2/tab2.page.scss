@@ -49,3 +49,33 @@ ion-content::part(background) {
     border-radius: 5px;
     background-color: #fff;
 }
+
+#icon{
+    float:right;
+    color: #f4f5f8;
+    padding: 10px;
+    padding-right: 10px;
+    font-size: medium;
+}
+
+
+
+
+ @keyframes icon {
+     0% { opacity: 0; }
+      50% { opacity: 1; }
+     100% { opacity: 0; }
+ }
+.icon {
+   display: inline-block;
+   text-decoration: none;
+   -webkit-animation: icon 1s linear infinite;
+   -moz-animation: icon 1s linear infinite;
+   -ms-animation: icon 1s linear infinite;
+   -o-animation: icon 1s linear infinite;
+   animation: icon 1s linear infinite;
+}
+
+.widget-49-meeting-item{
+    color: #000!important;
+}

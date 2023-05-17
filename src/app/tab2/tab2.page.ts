@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ListService } from '../api/list.service';
 import { IonInfiniteScroll, IonRefresher, LoadingController } from '@ionic/angular';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-tab2',
@@ -10,17 +11,19 @@ import { IonInfiniteScroll, IonRefresher, LoadingController } from '@ionic/angul
 
 export class Tab2Page {
 
+  icon = 'icon';
   pending: any[] = [];
   confirmated: any[] = [];
   loading: any;
-  // completed: any[] = [];
-  // canceled: any[] = [];
+  completed: any[] = [];
+  canceled: any[] = [];
+  next_party: any;
   constructor(public list: ListService, public loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
 
-    if(this.pending.length != 0  || this.pending.length != 0){
+    if(this.pending.length != 0  || this.completed.length != 0){
       this.refresh();
     }else{
     this.Init();
@@ -32,6 +35,7 @@ export class Tab2Page {
     this.showLoading();
     this.list.getRequest();
     this.getReturn();
+    // this.getNextParty();
 
 
   }
@@ -57,6 +61,9 @@ export class Tab2Page {
     this.refresh();
   }
 
+  disabled(){
+    this.icon = "false";
+  }
 
 
   refresh() {
@@ -73,7 +80,18 @@ export class Tab2Page {
   getReturn() {
     this.pending = this.list.pending;
     this.confirmated = this.list.confirmated;
+    this.completed = this.list.completed;
+    this.canceled = this.list.canceled;
+    this.next_party = this.list.confirmated;
+    this.next_party = this.next_party[0];
+
   }
+
+
+  // getNextParty(){
+  //   this.next_party = this.pending;
+  //   console.log(this.next_party);
+  // }
 
 
 

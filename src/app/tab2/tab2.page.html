@@ -5,7 +5,8 @@
 
 
     <!-- Cards iniciais onde vai ser mostradas as estatísticas das festas -->
-    <ion-grid>
+    
+    <ion-grid *ngIf='this.completed.length != 0'>
 
       <!-- Primeira linha -->
       <ion-row>
@@ -17,8 +18,10 @@
                 <span>
                   <ion-icon slot="start" size="default" name="checkmark-circle"></ion-icon>
                 </span>
-                Realizadas</ion-card-title>
-              <ion-card-subtitle>{{completed.length}} Festas realizadas</ion-card-subtitle>
+                Festas Agendadas</ion-card-title>
+                <div *ngIf='this.confirmated.length == 1; else confirmados'>
+              <ion-card-subtitle class='strong'>{{confirmated.length}} evento</ion-card-subtitle></div>
+              <ng-template #confirmados><ion-card-subtitle class='strong'>{{confirmated.length}} eventos</ion-card-subtitle></ng-template>
             </ion-card-header>
           </ion-card>
         </ion-col>
@@ -27,8 +30,8 @@
         <ion-col>
           <ion-card id="cards">
             <ion-card-header>
-              <ion-card-title>Próximas</ion-card-title>
-              <ion-card-subtitle>Próxima festa: {{next_party}} </ion-card-subtitle>
+              <ion-card-title>Próximo evento:</ion-card-title>
+              <ion-card-subtitle class='strong'>{{this.next_party}} </ion-card-subtitle>
             </ion-card-header>
           </ion-card>
         </ion-col>
@@ -51,10 +54,10 @@
 
         <!-- Card de festas canceladas -->
         <ion-col>
-          <ion-card color="danger" id="cards">
+          <ion-card color="success" id="cards">
             <ion-card-header>
-              <ion-card-title>Canceladas</ion-card-title>
-              <ion-card-subtitle>{{canceled.length}} festas canceladas </ion-card-subtitle>
+              <ion-card-title>Realizadas</ion-card-title>
+              <ion-card-subtitle>{{completed.length}} festas realizadas </ion-card-subtitle>
             </ion-card-header>
           </ion-card>
         </ion-col>
@@ -70,7 +73,7 @@
         <div *ngFor="let v of pending;">
           <ion-accordion-group (click)="disabled()" value="first">
 
-            <ion-card  color="warning">
+            <ion-card  class="{{icon}}" color="warning">
               <div id='icon' class="{{icon}}">
                 <span>
                   <ion-icon slot="start" size="default" color="light" name="alert-circle-outline"></ion-icon></span> Pendente

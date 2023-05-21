@@ -23,27 +23,24 @@ export class Tab2Page {
 
   ngOnInit() {
 
-    if(this.pending.length != 0  || this.completed.length != 0){
-      this.refresh();
-    }else{
     this.Init();
-    }
   };
 
+
   Init() {
-
     this.showLoading();
-    this.list.getRequest();
-    this.getReturn();
-    // this.getNextParty();
 
-
+    this.list.getRequest()
+      .then((result: any) => {
+        this.getReturn();
+      });
   }
+
 
   async showLoading() {
     this.loading = await this.loadingCtrl.create({
       message: 'Carregando...',
-       duration: 1500,
+      duration: 15000,
       cssClass: 'custom-loading',
     });
 
@@ -61,7 +58,7 @@ export class Tab2Page {
     this.refresh();
   }
 
-  disabled(){
+  disabled() {
     this.icon = "false";
   }
 
@@ -78,24 +75,25 @@ export class Tab2Page {
   }
 
   getReturn() {
+    this.loading.dismiss();
     this.pending = this.list.pending;
     this.confirmated = this.list.confirmated;
     this.completed = this.list.completed;
     this.canceled = this.list.canceled;
-    this.next_party = this.list.confirmated;
-    this.next_party = this.next_party[0];
-
+    this.next_party = this.list.confirmated[0].date_init;
+    this.next_party = this.formatarData(this.next_party);
   }
 
-
-  // getNextParty(){
-  //   this.next_party = this.pending;
-  //   console.log(this.next_party);
-  // }
-
-
-
-
+   formatarData(date:any) {
+    const dataObj = new Date(date);
+    
+    const dia = String(dataObj.getDate()).padStart(2, '0');
+    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+    const ano = dataObj.getFullYear();
+    
+    return `${dia}/${mes}/${ano}`;
+  }
+  
 
 
 }
